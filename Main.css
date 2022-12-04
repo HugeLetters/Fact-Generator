@@ -25,7 +25,7 @@ body,
 .share-button,
 #new-quote,
 #page-author * {
-  background: hsl(206deg, 82%, 53%);
+  background: hsl(276deg, 76%, 56%);
   color: white;
 }
 
@@ -48,7 +48,7 @@ body,
 
 #quote-box {
   background: white;
-  color: hsl(206deg, 82%, 53%);
+  color: hsl(276deg, 76%, 56%);
   height: 300px;
   padding: 0px 50px 70px;
   border-radius: 5px;
