@@ -15,9 +15,10 @@
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
     "express": "^4.17.3",
+    "image-to-base64": "^2.2.0",
     "node-fetch": "^3.2.3",
     "require.js": "^1.0.0",
-    "ws": "^8.11.0"
+    "websocket": "^1.0.34"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
