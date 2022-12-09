@@ -1,8 +1,7 @@
 import 'dotenv/config';
 import WebSocket from 'ws';
-import fs from 'fs';
-import imageToBase64 from 'image-to-base64';
-import { readFile } from 'fs/promises';
+import { readdirSync, readFileSync } from 'fs';
+import { dataURItoBlob, randomChoiceArray, randomInteger } from "./utils.js"
 
 const guild = process.env.GUILD_ID;
 const app = process.env.APP_ID;
@@ -67,44 +66,27 @@ socket.onmessage = async function (event) {
         console.log("Authenticated");
         auth = true
     };
-    // send message
-    if (lastSkylexmessage == 0 & auth
-        // auth & data.t == "TYPING_START" & data.d.member.user.id == "214013992052588545" & (Date().getTime() - lastSkylexmessage) > 10800000
+    // SKYLEX печатает
+    if (auth & lastSkylexmessage == 0
+        // & data.t == "TYPING_START" & data.d.member.user.id == "214013992052588545" & (Date().getTime() - lastSkylexmessage) > 10800000
     ) {
         lastSkylexmessage = new Date().getTime();
-        const filepath = "./source/Asuka_finger_point.png";
-        let file = await readFile(filepath, "binary");
-        file = new Buffer(file, 'binary').toString('binary');
-        let boundary = "ndbszgbdtyrhsgrzs";
-        let body = `--${boundary}
-Content-Disposition: form-data; name="payload_json"
-Content-Type: application/json
 
-{
-  "content": "Hello, World!",
-  "attachments": [{
-      "id": 0,
-      "description": "Asuka",
-      "filename": "asuka.png"
-  }]
-}
---${boundary}
-Content-Disposition: form-data; name="files[0]"; filename="asuka.png"
-Content-Type: image/png
+        const files = readdirSync('source/');
+        const filename = randomChoiceArray(files);
+        const filepath = "./source/" + filename;
+        let file = "data:image/png;base64," + readFileSync(filepath, "base64");
+        file = dataURItoBlob(file);
 
-${file}
---${boundary}--`;
+        let body = new FormData();
+        body.append("content", `${"Эй, ".repeat(randomInteger(0,1))}${"кто-то" || data.d.member.user.username} печатает${"!".repeat(randomInteger(1, 5))}`);
+        body.append("files[0]", file, filename);
 
-        // const r = await fetch(`${url.http}/channels/${data.d.channel_id}/messages`, {
-        const r = await fetch(`${url.http}/channels/1048360803373432844/messages`, {
+        fetch(`${url.http}/channels/${"1048360803373432844" || data.d.channel_id}/messages`, {
             method: 'POST',
-            headers: {
-                ...headers, ...{ "Content-Type": `multipart/form-data; boundary=${boundary}` }
-            },
+            headers: headers,
             body: body
-        }).then(x => x.json());
-        console.log(r);
-        socket.close(1000);
+        });
     }
     // NEW MESSAGE
     if (data.t == "MESSAGE_CREATE") {
