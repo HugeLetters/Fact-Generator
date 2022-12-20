@@ -1,10 +1,11 @@
 {
 	"folders": [
 		{
+			"name": "Quote Generator",
 			"path": "."
 		}
 	],
 	"settings": {
-		"livePreview.defaultPreviewPath": "c:\\Users\\ckuka\\VS Code Projects\\Quote Generator\\Main Page.html"
+		"livePreview.defaultPreviewPath": "c:\\Users\\ckuka\\VS Code Projects\\Quote Generator\\Index.html"
 	}
 }

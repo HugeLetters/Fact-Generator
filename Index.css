@@ -1,3 +1,30 @@
+@-webkit-keyframes fadeOutIn {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOutIn {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.fade {
+  -webkit-animation: fadeOutIn 2s;
+          animation: fadeOutIn 2s;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -18,15 +45,7 @@ body {
 }
 
 main {
-  width: 500px;
-}
-
-body,
-.share-button,
-#new-quote,
-#page-author * {
-  background: hsl(276deg, 76%, 56%);
-  color: white;
+  width: 600px;
 }
 
 #postToSocials {
@@ -47,9 +66,6 @@ body,
 }
 
 #quote-box {
-  background: white;
-  color: hsl(276deg, 76%, 56%);
-  height: 300px;
   padding: 0px 50px 70px;
   border-radius: 5px;
 }
@@ -57,6 +73,7 @@ body,
 #quote {
   height: 90%;
   text-align: center;
+  padding-top: 50px;
   margin-bottom: 20px;
   display: flex;
   flex-flow: column;
@@ -97,4 +114,14 @@ body,
 #new-quote {
   padding: 10px 15px;
   border-radius: 3px;
-}/*# sourceMappingURL=Main.css.map */
+}
+
+.mainColor {
+  background: white;
+  color: gray;
+}
+
+.secondaryColor {
+  background: gray;
+  color: white;
+}/*# sourceMappingURL=Index.css.map */
