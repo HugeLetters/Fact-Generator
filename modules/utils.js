@@ -4,8 +4,8 @@ export const newQuote = async (timer) => {
 
     setTimeout(async () => {
         const quote = await getRandomQuote();
-        document.getElementById("text").innerText = quote.quote;
-        document.getElementById("author").innerText = quote.author;
+        $("#text").text(quote.quote);
+        $("#author").text(quote.author);
         $("#tweet-quote").attr("href", tweetIntentURL(`${quote.author} once said: ${quote.quote}`))
         if (new Date().getTime() - timer.time > 499) {
             $("#quote-text, #author").css({ "opacity": 1 });
@@ -25,7 +25,7 @@ const getRandomQuote = async () => (
         .then(x => x.json())).quotes)
 )
 
-const setColorScheme = (mainColor, secondaryColor) => {
+export const setColorScheme = (mainColor, secondaryColor) => {
     $(".mainColor").css({ "color": mainColor, "background": secondaryColor });
     $(".secondaryColor").css({ "color": secondaryColor, "background": mainColor });
 }
