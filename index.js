@@ -6,6 +6,7 @@ $(() => {
         timer: 0,
         mainColor: "gray",
         secondaryColor: "white",
+        initial: true
     }
 
     $("#new-quote").click(async () => {

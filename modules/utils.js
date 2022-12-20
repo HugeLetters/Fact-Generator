@@ -14,7 +14,12 @@ export const newQuote = async (state) => {
 
     state.mainColor = `hsl(${70 + randomInteger(0, 340)}, ${30 + randomInteger(0, 70)}%, ${20 + randomInteger(0, 40)}%)`;
     state.secondaryColor = "white";
-    setColorScheme(state.mainColor, state.secondaryColor);
+    if (state.initial) {
+        setColorScheme(state.mainColor, state.secondaryColor);
+        state.initial = false;
+    } else {
+        setColorScheme(state.secondaryColor, state.mainColor);
+    }
 }
 
 export const randomInteger = (min = 0, max = min + 100) => (Math.floor(Math.random() * (max - min + 1) + min));
