@@ -8,9 +8,6 @@
   100% {
     opacity: 1;
   }
-
-
-  /* test */
 }
 @keyframes fadeOutIn {
   0% {
@@ -127,4 +124,14 @@ main {
 .secondaryColor {
   background: gray;
   color: white;
+}
+
+#quote-text, #author {
+  transition-property: opacity;
+  transition-duration: 0.5s;
+}
+
+.mainColor, .secondaryColor {
+  transition-property: color, background;
+  transition-duration: "1s";
 }/*# sourceMappingURL=Index.css.map */
