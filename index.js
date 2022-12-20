@@ -8,7 +8,7 @@ $(() => {
         newQuote(timer);
     });
     $("#new-quote").click();
-
+// test
     $("#quote-text, #author").css({
         "transition-property": "opacity",
         "transition-duration": "0.5s",
