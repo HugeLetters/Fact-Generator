@@ -8,6 +8,7 @@ $(() => {
         secondaryColor: "white",
         initial: true
     }
+    $("#loadingIcon").hide();
 
     $("#new-quote").click(async () => {
         state.timer = new Date().getTime();

@@ -10,8 +10,10 @@ export const newQuote = async (state) => {
         if (new Date().getTime() - state.timer > 499) {
             $("#quote-text, #author").css({ "opacity": 1 });
         };
+        $("#loadingIcon").hide().toggleClass("loading");
+        $("#new-quote span").show();
     }, 500)
-
+    
     state.mainColor = `hsl(${70 + randomInteger(0, 340)}, ${30 + randomInteger(0, 70)}%, ${20 + randomInteger(0, 40)}%)`;
     state.secondaryColor = "white";
     if (state.initial) {
@@ -19,7 +21,10 @@ export const newQuote = async (state) => {
         state.initial = false;
     } else {
         setColorScheme(state.secondaryColor, state.mainColor);
-    }
+    };
+    
+    $("#loadingIcon").show().toggleClass("loading");
+    $("#new-quote span").hide();
 }
 
 export const randomInteger = (min = 0, max = min + 100) => (Math.floor(Math.random() * (max - min + 1) + min));

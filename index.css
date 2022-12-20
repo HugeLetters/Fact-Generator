@@ -112,8 +112,9 @@ main {
 }
 
 #new-quote {
-  padding: 10px 15px;
+  padding: 10px 0px;
   border-radius: 3px;
+  width: 120px;
 }
 
 .mainColor {
@@ -136,4 +137,26 @@ main {
 .secondaryColor {
   transition-property: color, background-color;
   transition-duration: 1s;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+.loading {
+  -webkit-animation: loading 1s infinite;
+          animation: loading 1s infinite;
 }/*# sourceMappingURL=Index.css.map */
