@@ -126,12 +126,14 @@ main {
   color: white;
 }
 
-#quote-text, #author {
+#quote-text,
+#author {
   transition-property: opacity;
   transition-duration: 0.5s;
 }
 
-.mainColor, .secondaryColor {
-  transition-property: color, background;
+.mainColor,
+.secondaryColor {
+  transition-property: color, background-color;
   transition-duration: "1s";
 }/*# sourceMappingURL=Index.css.map */
