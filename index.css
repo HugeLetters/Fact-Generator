@@ -134,6 +134,6 @@ main {
 
 .mainColor,
 .secondaryColor {
-  transition-property: color, background;
-  transition-duration: "1s";
+  transition-property: color, background-color;
+  transition-duration: 1s;
 }/*# sourceMappingURL=Index.css.map */
