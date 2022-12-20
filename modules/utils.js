@@ -1,4 +1,4 @@
-export const newQuote = async (timer) => {
+export const newQuote = async (state) => {
 
     $("#quote-text, #author").css({ "opacity": 0 });
 
@@ -7,16 +7,17 @@ export const newQuote = async (timer) => {
         $("#text").text(quote.quote);
         $("#author").text(quote.author);
         $("#tweet-quote").attr("href", tweetIntentURL(`${quote.author} once said: ${quote.quote}`))
-        if (new Date().getTime() - timer.time > 499) {
+        if (new Date().getTime() - state.timer > 499) {
             $("#quote-text, #author").css({ "opacity": 1 });
         };
     }, 500)
 
-    const mainColor = `hsl(${70 + randomInteger(0, 340)}, ${30 + randomInteger(0, 70)}%, ${20 + randomInteger(0, 40)}%)`;
-    setColorScheme(mainColor, "white");
+    state.mainColor = `hsl(${70 + randomInteger(0, 340)}, ${30 + randomInteger(0, 70)}%, ${20 + randomInteger(0, 40)}%)`;
+    state.secondaryColor = "white";
+    setColorScheme(state.mainColor, state.secondaryColor);
 }
 
-const randomInteger = (min = 0, max = min + 100) => (Math.floor(Math.random() * (max - min + 1) + min));
+export const randomInteger = (min = 0, max = min + 100) => (Math.floor(Math.random() * (max - min + 1) + min));
 
 const getRandomQuote = async () => (
     randomChoiceArray((await fetch(
