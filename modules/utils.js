@@ -9,9 +9,9 @@ export const newQuote = async (state) => {
         $("#tweet-quote").attr("href", tweetIntentURL(`${quote.author} once said: ${quote.quote}`))
         if (new Date().getTime() - state.timer > 499) {
             $("#quote-text, #author").css({ "opacity": 1 });
+            $("#loadingIcon").hide().removeClass("loading");
+            $("#new-quote span").show();
         };
-        $("#loadingIcon").hide().toggleClass("loading");
-        $("#new-quote span").show();
     }, 500)
     
     state.mainColor = `hsl(${70 + randomInteger(0, 340)}, ${30 + randomInteger(0, 70)}%, ${20 + randomInteger(0, 40)}%)`;
@@ -23,7 +23,7 @@ export const newQuote = async (state) => {
         setColorScheme(state.secondaryColor, state.mainColor);
     };
     
-    $("#loadingIcon").show().toggleClass("loading");
+    $("#loadingIcon").show().addClass("loading");
     $("#new-quote span").hide();
 }
 
