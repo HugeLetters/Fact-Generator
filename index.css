@@ -115,6 +115,7 @@ main {
   padding: 10px 0px;
   border-radius: 3px;
   width: 120px;
+  cursor: pointer;
 }
 
 .mainColor {
