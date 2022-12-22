@@ -9,10 +9,10 @@ $(() => {
 
     $("#factBox").on({
         "mouseenter": () => {
-            // setColorScheme(state.secondaryColor, state.mainColor);
+            setColorScheme(state.secondaryColor, state.mainColor);
         },
         "mouseleave": () => {
-            // setColorScheme(state.mainColor, state.secondaryColor);
+            setColorScheme(state.mainColor, state.secondaryColor);
         },
     })
 
@@ -20,8 +20,10 @@ $(() => {
     const state = {
         mainColor: "gray",
         secondaryColor: "white",
-        initial: true
+        initial: true,
+        transitionTime: 1000
     }
     $("#loadingIcon").hide();
     $("#newFact").click();
+    $("main, #factBox, #factArticle, .mainColor, .secondaryColor").css("transition-duration", `${state.transitionTime / 1000}s`);
 })

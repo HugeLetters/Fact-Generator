@@ -14,25 +14,28 @@ export const newArticle = async (state) => {
         setColorScheme(state.secondaryColor, state.mainColor);
     };
 
-    const article = await getRandomWiki();
 
     const height = $("#factBox").outerHeight(true);
+    $("#factBox").css("transition-duration", `0s`);
     $("#factBox").css({ "max-height": `${height}px`, "min-height": `${height}px` });
-    // $("#factBox").css({ "max-height": "0px" });
-    // $("main").css({ "max-width": "1500px" })
+    $("#factBox").css("transition-duration", `${state.transitionTime / 1000}s`);
 
-
+    
+    
     setTimeout(async () => {
 
-        $("#factBox").css({ "max-height": "200vh", "min-height": "0vh" })
-        if (article.description.length > 550){
-            $("main").css({ "max-width": "1500px" })
+        const article = await getRandomWiki();
+
+        $("#factBox").css({ "max-height": "200vh", "min-height": "0vh" });
+
+        if (article.description.length > 550) {
+            $("main").css({ "max-width": "900px" })
         }
         else if (article.description.length > 350) {
             $("main").css({ "max-width": "900px" })
         }
         else {
-            $("main").css({ "max-width": "600px" })
+            $("main").css({ "max-width": "900px" })
         }
 
         $("#factDescriptionText").text(article.description);
