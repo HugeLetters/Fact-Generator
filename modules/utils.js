@@ -16,12 +16,28 @@ export const newArticle = async (state) => {
 
     const article = await getRandomWiki();
 
-    if (article.description.length > 350) { $("main").css("max-width", 1000) }
-    else { $("main").css("max-width", 600) }
+    const height = $("#factBox").outerHeight(true);
+    $("#factBox").css({ "max-height": `${height}px`, "min-height": `${height}px` });
+    // $("#factBox").css({ "max-height": "0px" });
+    // $("main").css({ "max-width": "1500px" })
+
+
     setTimeout(async () => {
+
+        $("#factBox").css({ "max-height": "200vh", "min-height": "0vh" })
+        if (article.description.length > 550){
+            $("main").css({ "max-width": "1500px" })
+        }
+        else if (article.description.length > 350) {
+            $("main").css({ "max-width": "900px" })
+        }
+        else {
+            $("main").css({ "max-width": "600px" })
+        }
 
         $("#factDescriptionText").text(article.description);
         $("#factSubjectText").text(article.subject);
+
         $("#tweet").attr("href", tweetIntentURL(`${article.subject} once said: ${article.description}`))
 
         $("#factArticle").css({ "opacity": 1 });

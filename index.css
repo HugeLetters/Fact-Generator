@@ -18,7 +18,7 @@ body {
 
 main {
   min-width: 600px;
-  transition-property: max-width, height;
+  transition-property: max-width;
   transition-duration: 0.5s;
   display: flex;
   align-items: center;
@@ -46,8 +46,11 @@ main {
 }
 
 #factBox {
+  min-width: 600px;
   padding: 0px 50px 70px;
   border-radius: 5px;
+  transition-property: max-height, min-height;
+  transition-duration: 0.5s;
 }
 
 #factArticle {
