@@ -1,31 +1,4 @@
-@-webkit-keyframes fadeOutIn {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes fadeOutIn {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-.fade {
-  -webkit-animation: fadeOutIn 2s;
-          animation: fadeOutIn 2s;
-}
-
-* {
+html * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -37,22 +10,29 @@
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  min-width: 100vw;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
 main {
-  width: 600px;
+  min-width: 600px;
+  transition-property: max-width, height;
+  transition-duration: 0.5s;
+  display: flex;
+  align-items: center;
+}
+
+#factBoxWrapper {
+  padding: 20px 0;
 }
 
 #postToSocials {
   display: flex;
 }
 
-.share-button {
+.shareButton {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,17 +41,16 @@ main {
   margin-right: 10px;
   border-radius: 3px;
 }
-.share-button i {
+.shareButton i {
   font-size: 1.5rem;
 }
 
-#fact-box {
+#factBox {
   padding: 0px 50px 70px;
   border-radius: 5px;
 }
 
-#fact {
-  height: 90%;
+#factArticle {
   text-align: center;
   padding-top: 50px;
   margin-bottom: 20px;
@@ -80,15 +59,14 @@ main {
   justify-content: center;
 }
 
-#fact-subject {
+#factSubject {
   text-align: right;
 }
 
-#fact-text {
+#factDescription {
   margin-bottom: 10px;
 }
-
-#fact-text * {
+#factDescription * {
   font-size: 2rem;
   font-weight: 600;
 }
@@ -98,20 +76,20 @@ main {
   justify-content: space-between;
 }
 
-#subject::before {
+#factSubjectText::before {
   content: "- ";
 }
 
-#page-author {
+#pageAuthor {
   text-align: center;
   margin-top: 10px;
 }
 
-#page-author::before {
+#pageAuthor::before {
   content: "by ";
 }
 
-#new-fact {
+#newFact {
   padding: 10px 0px;
   border-radius: 3px;
   width: 120px;
@@ -128,8 +106,7 @@ main {
   color: white;
 }
 
-#fact-text,
-#subject {
+#factArticle {
   transition-property: opacity;
   transition-duration: 0.5s;
 }

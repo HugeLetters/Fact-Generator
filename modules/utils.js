@@ -1,6 +1,10 @@
 export const newArticle = async (state) => {
 
-    $("#fact-text, #subject").css({ "opacity": 0 });
+    $("#factArticle").css({ "opacity": 0 });
+    $("#loadingIcon").show().addClass("loading");
+    $("#newFact span").hide();
+    $("#newFact").prop('disabled', true).css("cursor", "progress");
+
     state.mainColor = `hsl(${70 + randomInteger(0, 340)}, ${30 + randomInteger(0, 70)}%, ${20 + randomInteger(0, 40)}%)`;
     state.secondaryColor = "white";
     if (state.initial) {
@@ -10,19 +14,20 @@ export const newArticle = async (state) => {
         setColorScheme(state.secondaryColor, state.mainColor);
     };
 
-    $("#loadingIcon").show().addClass("loading");
-    $("#new-fact span").hide();
-    $("#new-fact").prop('disabled', true);
+    const article = await getRandomWiki();
 
+    if (article.description.length > 350) { $("main").css("max-width", 1000) }
+    else { $("main").css("max-width", 600) }
     setTimeout(async () => {
-        const article = await getRandomWiki();
-        $("#text").text(article.description);
-        $("#subject").text(article.subject);
-        $("#tweet-fact").attr("href", tweetIntentURL(`${article.subject} once said: ${article.description}`))
-            $("#fact-text, #subject").css({ "opacity": 1 });
-            $("#loadingIcon").hide().removeClass("loading");
-            $("#new-fact span").show();
-            $("#new-fact").prop('disabled', false);
+
+        $("#factDescriptionText").text(article.description);
+        $("#factSubjectText").text(article.subject);
+        $("#tweet").attr("href", tweetIntentURL(`${article.subject} once said: ${article.description}`))
+
+        $("#factArticle").css({ "opacity": 1 });
+        $("#loadingIcon").hide().removeClass("loading");
+        $("#newFact span").show();
+        $("#newFact").prop('disabled', false).css("cursor", "pointer");
     }, 500)
 
 }
@@ -45,21 +50,24 @@ const getRandomWiki = async () => {
     const getRandomPageURL = `https://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&format=json&redirects&origin=*`
     const randomPageMeta = (await wikiAPIGetRequest(getRandomPageURL)).query.pages;
     const pageID = Object.keys(randomPageMeta)[0];
+    // const pageID = "62994558";
 
-    if (!pageID) return { subject: "Couldn't find anything", description: "Please try later :(" };
+    if (!pageID) return { subject: "Please try later :(", description: "Couldn't find anything" };
 
     const pageTitle = randomPageMeta[pageID].title;
+    // const pageTitle = "test";
 
     const getPageContentURL = `https://en.wikipedia.org/w/api.php?action=parse&pageid=${pageID}&format=json&redirects&origin=*`
     const wikiPage = (await wikiAPIGetRequest(getPageContentURL)).parse.text["*"];
 
-    if (!wikiPage) return { subject: "Couldn't find anything", description: "Please try later :(" };
+    if (!wikiPage) return { subject: "Please try later :(", description: "Couldn't find anything" };
 
     const wikiArticle = $($.parseHTML(wikiPage))
         .children("p")
         .filter(
             function () {
-                return $(this).text().length > 3
+                const text = $(this).text();
+                return text.length > 3 & !(/mw-parser-output/.test(text))
             }
         )
         .filter(":first").text().replace(/\[\d{1,2}\]/g, "")
