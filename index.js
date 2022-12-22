@@ -1,4 +1,4 @@
-import { getRandomWiki, newfact, setColorScheme } from './modules/utils.js'
+import {  newArticle, setColorScheme } from './modules/utils.js'
 
 $(() => {
 
@@ -12,7 +12,7 @@ $(() => {
     
     $("#new-fact").click(async () => {
         state.timer = new Date().getTime();
-        newFact(state);
+        newArticle(state);
     });
 
     $("#new-fact").click();
