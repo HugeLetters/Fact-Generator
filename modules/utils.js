@@ -29,13 +29,13 @@ export const newArticle = async (state) => {
         $("#factBox").css({ "max-height": "200vh", "min-height": "0vh" });
 
         if (article.description.length > 550) {
-            $("main").css({ "max-width": "900px" })
+            $("main").css({ "max-width": "1500px" })
         }
         else if (article.description.length > 350) {
             $("main").css({ "max-width": "900px" })
         }
         else {
-            $("main").css({ "max-width": "900px" })
+            $("main").css({ "max-width": "600px" })
         }
 
         $("#factDescriptionText").text(article.description);
