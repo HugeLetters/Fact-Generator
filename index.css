@@ -65,12 +65,12 @@ main {
   font-size: 1.5rem;
 }
 
-#quote-box {
+#fact-box {
   padding: 0px 50px 70px;
   border-radius: 5px;
 }
 
-#quote {
+#fact {
   height: 90%;
   text-align: center;
   padding-top: 50px;
@@ -80,15 +80,15 @@ main {
   justify-content: center;
 }
 
-#quote-author {
+#fact-author {
   text-align: right;
 }
 
-#quote-text {
+#fact-text {
   margin-bottom: 10px;
 }
 
-#quote-text * {
+#fact-text * {
   font-size: 2rem;
   font-weight: 600;
 }
@@ -111,7 +111,7 @@ main {
   content: "by ";
 }
 
-#new-quote {
+#new-fact {
   padding: 10px 0px;
   border-radius: 3px;
   width: 120px;
@@ -128,7 +128,7 @@ main {
   color: white;
 }
 
-#quote-text,
+#fact-text,
 #author {
   transition-property: opacity;
   transition-duration: 0.5s;

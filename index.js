@@ -1,4 +1,4 @@
-import { getRandomWiki, newQuote, setColorScheme } from './modules/utils.js'
+import { getRandomWiki, newfact, setColorScheme } from './modules/utils.js'
 
 $(() => {
 
@@ -10,14 +10,14 @@ $(() => {
     }
     $("#loadingIcon").hide();
     
-    $("#new-quote").click(async () => {
+    $("#new-fact").click(async () => {
         state.timer = new Date().getTime();
         newFact(state);
     });
 
-    $("#new-quote").click();
+    $("#new-fact").click();
 
-    $("#quote-box").on({
+    $("#fact-box").on({
         "mouseenter": () => {
             setColorScheme(state.secondaryColor, state.mainColor);
         },

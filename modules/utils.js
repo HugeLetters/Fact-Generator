@@ -1,16 +1,16 @@
 export const newFact = async (state) => {
 
-    $("#quote-text, #author").css({ "opacity": 0 });
+    $("#fact-text, #author").css({ "opacity": 0 });
 
     setTimeout(async () => {
-        const quote = await getRandomWiki();
-        $("#text").text(quote.quote);
-        $("#author").text(quote.author);
-        $("#tweet-quote").attr("href", tweetIntentURL(`${quote.author} once said: ${quote.quote}`))
+        const fact = await getRandomWiki();
+        $("#text").text(fact.fact);
+        $("#author").text(fact.author);
+        $("#tweet-fact").attr("href", tweetIntentURL(`${fact.author} once said: ${fact.fact}`))
         if (new Date().getTime() - state.timer > 499) {
-            $("#quote-text, #author").css({ "opacity": 1 });
+            $("#fact-text, #author").css({ "opacity": 1 });
             $("#loadingIcon").hide().removeClass("loading");
-            $("#new-quote span").show();
+            $("#new-fact span").show();
         };
     }, 500)
 
@@ -24,7 +24,7 @@ export const newFact = async (state) => {
     };
 
     $("#loadingIcon").show().addClass("loading");
-    $("#new-quote span").hide();
+    $("#new-fact span").hide();
 }
 
 export const randomInteger = (min = 0, max = min + 100) => (Math.floor(Math.random() * (max - min + 1) + min));
