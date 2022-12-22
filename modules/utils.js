@@ -23,16 +23,16 @@ export const newArticle = async (state) => {
 
         const article = await getRandomWiki();
 
-        $("#factBox").css({ "max-height": "300vh", "min-height": "0vh" });
+        $("#factBox").css({ "max-height": "1000vh", "min-height": "0vh" });
 
         if (article.description.length > 550) {
-            $("main").css({ "max-width": "93.75rem" })
+            $("main").css({ "max-width": "95vw" })
         }
         else if (article.description.length > 350) {
-            $("main").css({ "max-width": "56.25rem" })
+            $("main").css({ "max-width": "60vw" })
         }
         else {
-            $("main").css({ "max-width": "37.5rem" })
+            $("main").css({ "max-width": "40vw" })
         }
 
         $("#factDescriptionText").text(article.description);

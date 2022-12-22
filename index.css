@@ -17,7 +17,7 @@ body {
 }
 
 main {
-  min-width: 37.5rem;
+  min-width: 25rem;
   transition-property: max-width;
   display: flex;
   align-items: center;
@@ -45,7 +45,7 @@ main {
 }
 
 #factBox {
-  min-width: 37.5rem;
+  min-width: 25rem;
   padding: 0px 3.12rem 4.37rem;
   border-radius: 0.31rem;
   transition-property: max-height, min-height, color, background-color;
