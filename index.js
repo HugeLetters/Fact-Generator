@@ -1,4 +1,4 @@
-import { newQuote, setColorScheme } from './modules/utils.js'
+import { getRandomWiki, newQuote, setColorScheme } from './modules/utils.js'
 
 $(() => {
 
@@ -9,10 +9,10 @@ $(() => {
         initial: true
     }
     $("#loadingIcon").hide();
-
+    
     $("#new-quote").click(async () => {
         state.timer = new Date().getTime();
-        newQuote(state);
+        newFact(state);
     });
 
     $("#new-quote").click();
