@@ -17,14 +17,14 @@ body {
 }
 
 main {
-  min-width: 600px;
+  min-width: 37.5rem;
   transition-property: max-width;
   display: flex;
   align-items: center;
 }
 
 #factBoxWrapper {
-  padding: 20px 0;
+  padding: 1.25rem 0;
 }
 
 #postToSocials {
@@ -35,26 +35,26 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-  border-radius: 3px;
+  width: 3.12rem;
+  height: 3.12rem;
+  margin-right: 0.62rem;
+  border-radius: 0.18rem;
 }
 .shareButton i {
   font-size: 1.5rem;
 }
 
 #factBox {
-  min-width: 600px;
-  padding: 0px 50px 70px;
-  border-radius: 5px;
+  min-width: 37.5rem;
+  padding: 0px 3.12rem 4.37rem;
+  border-radius: 0.31rem;
   transition-property: max-height, min-height, color, background-color;
 }
 
 #factArticle {
   text-align: center;
-  padding-top: 50px;
-  margin-bottom: 20px;
+  padding-top: 3.12rem;
+  margin-bottom: 1.25rem;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -65,7 +65,7 @@ main {
 }
 
 #factDescription {
-  margin-bottom: 10px;
+  margin-bottom: 0.62rem;
 }
 #factDescription * {
   font-size: 2rem;
@@ -77,13 +77,9 @@ main {
   justify-content: space-between;
 }
 
-#factSubjectText::before {
-  content: "- ";
-}
-
 #pageAuthor {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 0.62rem;
 }
 
 #pageAuthor::before {
@@ -91,9 +87,9 @@ main {
 }
 
 #newFact {
-  padding: 10px 0px;
-  border-radius: 3px;
-  width: 120px;
+  padding: 0.62rem 0px;
+  border-radius: 0.18rem;
+  width: 7.5rem;
   cursor: pointer;
 }
 
@@ -137,4 +133,26 @@ main {
   -webkit-animation: loading 0.5s infinite linear;
           animation: loading 0.5s infinite linear;
   font-size: 1.5rem;
+}
+
+#factSubjectLink {
+  position: relative;
+}
+
+#factSubjectLink::before {
+  content: "more on ";
+}
+
+#factSubjectLinkUnderline {
+  width: 100%;
+  height: 0.12rem;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition-property: opacity;
+}
+
+#factSubject:hover #factSubjectLinkUnderline {
+  opacity: 1;
 }/*# sourceMappingURL=index.css.map */

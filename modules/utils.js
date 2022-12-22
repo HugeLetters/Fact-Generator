@@ -14,40 +14,38 @@ export const newArticle = async (state) => {
         setColorScheme(state.secondaryColor, state.mainColor);
     };
 
-
     const height = $("#factBox").outerHeight(true);
     $("#factBox").css("transition-duration", `0s`);
     $("#factBox").css({ "max-height": `${height}px`, "min-height": `${height}px` });
     $("#factBox").css("transition-duration", `${state.transitionTime / 1000}s`);
 
-    
-    
     setTimeout(async () => {
 
         const article = await getRandomWiki();
 
-        $("#factBox").css({ "max-height": "200vh", "min-height": "0vh" });
+        $("#factBox").css({ "max-height": "300vh", "min-height": "0vh" });
 
         if (article.description.length > 550) {
-            $("main").css({ "max-width": "1500px" })
+            $("main").css({ "max-width": "93.75rem" })
         }
         else if (article.description.length > 350) {
-            $("main").css({ "max-width": "900px" })
+            $("main").css({ "max-width": "56.25rem" })
         }
         else {
-            $("main").css({ "max-width": "600px" })
+            $("main").css({ "max-width": "37.5rem" })
         }
 
         $("#factDescriptionText").text(article.description);
         $("#factSubjectText").text(article.subject);
 
-        $("#tweet").attr("href", tweetIntentURL(`${article.subject} once said: ${article.description}`))
+        $("#tweet").attr("href", tweetIntentURL(`${article.subject} once said: ${article.description}`));
+        $("#factSubjectLink").attr("href", article.link);
 
         $("#factArticle").css({ "opacity": 1 });
         $("#loadingIcon").hide().removeClass("loading");
         $("#newFact span").show();
         $("#newFact").prop('disabled', false).css("cursor", "pointer");
-    }, 500)
+    }, 100)
 
 }
 
@@ -66,12 +64,14 @@ const tweetIntentURL = (tweet) => (
 
 const getRandomWiki = async () => {
 
+    const response = { subject: "Please try later :(", description: "Couldn't find anything", link: "" };
+
     const getRandomPageURL = `https://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&format=json&redirects&origin=*`
     const randomPageMeta = (await wikiAPIGetRequest(getRandomPageURL)).query.pages;
     const pageID = Object.keys(randomPageMeta)[0];
     // const pageID = "62994558";
 
-    if (!pageID) return { subject: "Please try later :(", description: "Couldn't find anything" };
+    if (!pageID) return response;
 
     const pageTitle = randomPageMeta[pageID].title;
     // const pageTitle = "test";
@@ -79,7 +79,7 @@ const getRandomWiki = async () => {
     const getPageContentURL = `https://en.wikipedia.org/w/api.php?action=parse&pageid=${pageID}&format=json&redirects&origin=*`
     const wikiPage = (await wikiAPIGetRequest(getPageContentURL)).parse.text["*"];
 
-    if (!wikiPage) return { subject: "Please try later :(", description: "Couldn't find anything" };
+    if (!wikiPage) return response;
 
     const wikiArticle = $($.parseHTML(wikiPage))
         .children("p")
@@ -91,7 +91,10 @@ const getRandomWiki = async () => {
         )
         .filter(":first").text().replace(/\[\d{1,2}\]/g, "")
 
-    return { subject: pageTitle, description: wikiArticle };
+    if (/.+ may refer to:/i.test(wikiArticle) || wikiArticle == '') { return await getRandomWiki() }
+
+    Object.assign(response, { subject: pageTitle, description: wikiArticle, link: `https://en.wikipedia.org/?curid=${pageID}` });
+    return response;
 }
 
 const wikiAPIGetRequest = async (URL) => {
