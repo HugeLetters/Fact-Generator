@@ -80,7 +80,7 @@ main {
   justify-content: center;
 }
 
-#fact-author {
+#fact-subject {
   text-align: right;
 }
 
@@ -98,7 +98,7 @@ main {
   justify-content: space-between;
 }
 
-#author::before {
+#subject::before {
   content: "- ";
 }
 
@@ -129,7 +129,7 @@ main {
 }
 
 #fact-text,
-#author {
+#subject {
   transition-property: opacity;
   transition-duration: 0.5s;
 }
@@ -161,4 +161,4 @@ main {
   -webkit-animation: loading 0.5s infinite linear;
           animation: loading 0.5s infinite linear;
   font-size: 1.5rem;
-}/*# sourceMappingURL=Index.css.map */
+}/*# sourceMappingURL=index.css.map */

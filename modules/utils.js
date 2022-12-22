@@ -1,20 +1,6 @@
 export const newArticle = async (state) => {
 
-    $("#fact-text, #author").css({ "opacity": 0 });
-
-    setTimeout(async () => {
-        const article = await getRandomWiki();
-        $("#text").text(article.description);
-        $("#author").text(article.subject);
-        $("#tweet-fact").attr("href", tweetIntentURL(`${article.subject} once said: ${article.description}`))
-        if (new Date().getTime() - state.timer > 499) {
-            $("#fact-text, #author").css({ "opacity": 1 });
-            $("#loadingIcon").hide().removeClass("loading");
-            $("#new-fact span").show();
-            $("#new-fact").prop('disabled', false);
-        };
-    }, 500)
-
+    $("#fact-text, #subject").css({ "opacity": 0 });
     state.mainColor = `hsl(${70 + randomInteger(0, 340)}, ${30 + randomInteger(0, 70)}%, ${20 + randomInteger(0, 40)}%)`;
     state.secondaryColor = "white";
     if (state.initial) {
@@ -23,10 +9,22 @@ export const newArticle = async (state) => {
     } else {
         setColorScheme(state.secondaryColor, state.mainColor);
     };
-    
+
     $("#loadingIcon").show().addClass("loading");
     $("#new-fact span").hide();
     $("#new-fact").prop('disabled', true);
+
+    setTimeout(async () => {
+        const article = await getRandomWiki();
+        $("#text").text(article.description);
+        $("#subject").text(article.subject);
+        $("#tweet-fact").attr("href", tweetIntentURL(`${article.subject} once said: ${article.description}`))
+            $("#fact-text, #subject").css({ "opacity": 1 });
+            $("#loadingIcon").hide().removeClass("loading");
+            $("#new-fact span").show();
+            $("#new-fact").prop('disabled', false);
+    }, 500)
+
 }
 
 export const setColorScheme = (mainColor, secondaryColor) => {
@@ -43,7 +41,6 @@ const tweetIntentURL = (tweet) => (
 )
 
 const getRandomWiki = async () => {
-
 
     const getRandomPageURL = `https://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&format=json&redirects&origin=*`
     const randomPageMeta = (await wikiAPIGetRequest(getRandomPageURL)).query.pages;
@@ -66,7 +63,6 @@ const getRandomWiki = async () => {
             }
         )
         .filter(":first").text().replace(/\[\d{1,2}\]/g, "")
-
 
     return { subject: pageTitle, description: wikiArticle };
 }
