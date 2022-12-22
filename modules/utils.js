@@ -65,7 +65,7 @@ const getRandomWiki = async () => {
                 return $(this).text().length > 3
             }
         )
-        .filter(":first").text().replace(/\[\d{1,2}\]/, "")
+        .filter(":first").text().replace(/\[\d{1,2}\]/g, "")
 
 
     return { subject: pageTitle, description: wikiArticle };
